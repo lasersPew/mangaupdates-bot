@@ -12,9 +12,10 @@ ca = certifi.where()
 
 dbUsername = config["dbUsername"]
 dbPassword = config["dbPassword"]
-mongo = MongoClient(f"mongodb+srv://{dbUsername}:{dbPassword}@akane.dsytm.mongodb.net/Kana?retryWrites=true&w=majority", tlsCAFile=ca)
+database = config["database"]
+mongo = MongoClient(f"mongodb+srv://{dbUsername}:{dbPassword}@akane.dsytm.mongodb.net/{database}?retryWrites=true&w=majority", tlsCAFile=ca)
 
-database = mongo["Kana"]
+database = mongo[database]
 srv = database["servers"]
 usr = database["users"]
 
